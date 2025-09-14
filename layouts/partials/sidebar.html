@@ -1,0 +1,24 @@
+{{/* Decide whether the sidebar should show on this page */}}
+{{- $place := "" -}}
+{{- if eq .Kind "home" -}}
+  {{- $place = (default .Site.Params.sidebar.home .Params.sidebar) -}}
+{{- else if eq .Kind "page" -}}
+  {{- $place = (default .Site.Params.sidebar.single .Params.sidebar) -}}
+{{- else -}}
+  {{- $place = (default .Site.Params.sidebar.list .Params.sidebar) -}}
+{{- end -}}
+
+{{- if $place -}}
+  <!-- Close button (mobile; CSS controls visibility) -->
+  <button id="sidebarClose" class="drawer-close" aria-label="Close sidebar">←</button>
+
+  {{/* Always use the site-level widgets list to avoid type issues */}}
+  {{- $widgets := .Site.Params.sidebar.widgets -}}
+  {{- if not $widgets -}}
+    {{- $widgets = (slice "search" "recent" "categories" "taglist") -}}
+  {{- end -}}
+
+  {{- range $widgets -}}
+    {{- partial (printf "widgets/%s.html" .) $ -}}
+  {{- end -}}
+{{- end -}}

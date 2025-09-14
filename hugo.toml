@@ -1,3 +1,66 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "https://www.crumbsofsanity.com/"
+languageCode = "en"
+title = "Crumbs of Sanity"
+#theme = "mainroad"
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  posts = "/:year/:month/:slug.html"
+
+
+[params]
+  description     = "Recipes and tales to bring comfort through academia and beyond"
+  author          = "Carmel"
+  readMore        = true
+  toc             = false
+  summaryLength   = 60
+  customJS        = ["js/custom.js"]
+  customCSS       = ["css/custom.css"]
+  googleFontsLink = "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+  mainSections    = ["posts"]
+  heroImage       = "img/hero.jpg"
+
+[params.sidebar]
+  home    = "left"
+  list    = "left"
+  single  = "left"
+  widgets = ["search", "recent", "categories", "taglist"]
+
+[params.widgets]
+  recent_posts       = 5
+  recent_num         = 5        # belt-and-braces
+  categories_counter = false
+  tags_counter       = false
+
+  [params.widgets.search]
+    url = "https://www.google.com/search"
+    [params.widgets.search.input]
+      name = "q"
+      pre  = "site:crumbsofsanity.com "
+
+[params.style.vars]
+  highlightColor     = "#e22d30"
+  fontFamilyPrimary  = "\"Montserrat\", \"Lora\", \"EB Garamond\", serif"
+  fontFamilySecondary= "SFMono-Regular, Menlo, Monaco, Consolas, \"Courier New\", monospace"
+
+
+[menu]
+  [[menu.main]]
+    name   = "The Blog"
+    url    = "/"
+    weight = 1
+  [[menu.main]]
+    name   = "About"
+    url    = "/about/"
+    weight = 2
+  [[menu.main]]
+    name   = "How to contribute"
+    url    = "/how-to-contribute/"
+    weight = 3
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

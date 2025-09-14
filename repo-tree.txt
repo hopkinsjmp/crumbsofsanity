@@ -1,0 +1,178 @@
+.
+├── .browserslistrc
+├── .editorconfig
+├── .eslintrc
+├── .github
+│   └── workflows
+│       └── ci-test.yml
+├── .gitignore
+├── .gitmodules
+├── .hugo_build.lock
+├── .postcssrc
+├── .stylelintrc
+├── CONTRIBUTING.md
+├── LICENSE
+├── LICENSE.md
+├── README.md
+├── archetypes
+│   └── default.md
+├── assets
+│   ├── css
+│   │   ├── main.scss
+│   │   └── style.css
+│   └── static
+│       └── img
+├── content
+│   ├── about
+│   │   └── _index.md
+│   ├── how-to-contribute
+│   │   └── _index.md
+│   ├── posts
+│   │   ├── 2025-05-about
+│   │   ├── 2025-05-how-to-contribute
+│   │   ├── 2025-05-recipe-catalogue
+│   │   ├── 2025-05-this-is-post-number-2
+│   │   ├── 2025-06-a-soothing-smoothie-bowl-1-cashew-and-berry
+│   │   ├── 2025-06-a-vegetable-soup-for-a-fruitless-mind
+│   │   ├── 2025-06-cookies
+│   │   ├── 2025-06-copyright
+│   │   ├── 2025-06-privacy
+│   │   ├── 2025-06-soak-blend-breathe-or-cashew-milk-for-when-everything-s-a-lot
+│   │   ├── 2025-06-terms
+│   │   ├── 2025-07-coming-up-for-air-a-gentle-roast-of-fennel-and-cream
+│   │   ├── 2025-07-courgettes-for-the-countdown
+│   │   ├── 2025-07-halloumi-and-the-concentrated-mind
+│   │   ├── 2025-07-post
+│   │   └── 2025-08-a-welcome-interlude-toast-three-ways
+│   └── theme-layouts.xml
+├── data
+├── exampleSite
+│   ├── .gitignore
+│   ├── config.toml
+│   ├── content
+│   │   ├── about.md
+│   │   ├── docs
+│   │   └── post
+│   ├── data
+│   │   └── .gitkeep
+│   └── static
+│       └── .gitkeep
+├── hugo.toml
+├── hugo_extended_0.125.7_linux-amd64.deb
+├── i18n
+│   ├── bg.yaml
+│   ├── bn.yaml
+│   ├── cs.yaml
+│   ├── de.yaml
+│   ├── en.yaml
+│   ├── es.yaml
+│   ├── fi.yaml
+│   ├── fr.yaml
+│   ├── hr.yaml
+│   ├── hu.yaml
+│   ├── id.yaml
+│   ├── it.yaml
+│   ├── ja.yaml
+│   ├── kk.yaml
+│   ├── mk.yaml
+│   ├── nl.yaml
+│   ├── pt-br.yaml
+│   ├── pt.yaml
+│   ├── ru.yaml
+│   ├── sv.yaml
+│   ├── vi.yaml
+│   ├── zh-cn.yaml
+│   └── zh-tw.yaml
+├── images
+│   ├── screenshot.png
+│   └── tn.png
+├── layouts
+│   ├── 404.html
+│   ├── _default
+│   │   ├── baseof.html
+│   │   ├── list.html
+│   │   ├── single.html
+│   │   └── summary.html
+│   ├── index.html
+│   └── partials
+│       ├── authorbox.html
+│       ├── comments.html
+│       ├── footer.html
+│       ├── footer_links.html
+│       ├── header.html
+│       ├── logo.html
+│       ├── mathjax.html
+│       ├── menu.html
+│       ├── pager.html
+│       ├── pagination.html
+│       ├── post_meta
+│       ├── post_meta.html
+│       ├── post_tags.html
+│       ├── post_thumbnail.html
+│       ├── post_toc.html
+│       ├── sidebar.html
+│       ├── svg
+│       └── widgets
+├── package-lock.json
+├── package.json
+├── public
+│   ├── 2025
+│   │   ├── 05
+│   │   ├── 06
+│   │   ├── 07
+│   │   └── 08
+│   ├── 404.html
+│   ├── about
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   ├── apple-touch-icon.png
+│   ├── categories
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   ├── css
+│   │   ├── custom.css
+│   │   ├── main.min.css
+│   │   └── style.css
+│   ├── favicon.ico
+│   ├── how-to-contribute
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   ├── img
+│   │   ├── avatar.png
+│   │   ├── hero.jpg
+│   │   └── placeholder.png
+│   ├── index.html
+│   ├── index.xml
+│   ├── js
+│   │   ├── custom.js
+│   │   ├── menu.js
+│   │   └── sidebar.js
+│   ├── page
+│   │   ├── 1
+│   │   └── 2
+│   ├── posts
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   ├── sidebar.js
+│   ├── sitemap.xml
+│   ├── tags
+│   │   ├── index.html
+│   │   ├── index.xml
+│   │   └── page
+│   └── theme-layouts.xml
+├── repo-tree.txt
+├── resources
+│   └── _gen
+│       └── assets
+├── static
+│   ├── img
+│   │   └── hero.jpg
+│   └── js
+│       └── sidebar.js
+└── theme.toml
+
+71 directories, 105 files

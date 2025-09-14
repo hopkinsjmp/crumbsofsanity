@@ -1,0 +1,16 @@
+{{- $showCount := .Site.Params.widgets.tags_counter | default false -}}
+{{- with .Site.Taxonomies.tags -}}
+<div class="widget-taglist widget">
+  <h4 class="widget__title">Tags</h4>
+  <div class="widget__content">
+    {{- range $name, $tax := . -}}
+      {{- with site.GetPage (printf "/tags/%s" $name) -}}
+        <a class="widget-taglist__link" href="{{ .RelPermalink }}">
+          {{ humanize $name }}
+          {{- if $showCount -}} <span class="widget__counter--bubble">{{ len $tax.Pages }}</span>{{- end -}}
+        </a>
+      {{- end -}}
+    {{- end -}}
+  </div>
+</div>
+{{- end -}}

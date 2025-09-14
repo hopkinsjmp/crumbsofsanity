@@ -1,0 +1,23 @@
+{{ define "main" }}
+<main class="main list home-tiles" role="main">
+  {{ if .IsHome }}
+    <!-- optional intro content could go here -->
+  {{ end }}
+
+  <div class="tiles">
+    {{ range .Paginator.Pages }}
+      <article class="tile">
+        {{ with .Params.image }}
+          <a class="tile__thumb" href="{{ .Permalink }}">
+            <img src="{{ . | relURL }}" alt="">
+          </a>
+        {{ end }}
+        <div class="tile__meta">{{ .Date.Format "January 2, 2006" }}</div>
+        <h2 class="tile__title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class="tile__excerpt">{{ .Summary }}</div>
+      </article>
+    {{ end }}
+  </div>
+</main>
+{{ partial "pagination.html" . }}
+{{ end }}
