@@ -6,7 +6,7 @@
 
   <title>{{ if .Title }}{{ .Title }} · {{ site.Title }}{{ else }}{{ site.Title }}{{ end }}</title>
 
-  {{/* Meta description (from page desc or summary or site param) */}}
+  {{/* Meta description (page desc → summary → site param) */}}
   {{- $desc := .Params.description | default (cond (gt (len .Summary) 0) (.Summary | plainify) site.Params.description) -}}
   {{- with $desc }}<meta name="description" content="{{ . }}">{{ end }}
 
@@ -16,20 +16,27 @@
   {{ end }}
 
   {{/* Main SCSS pipeline: assets/css/main.scss → CSS */}}
-  {{ $scss := resources.Get "css/main.scss" | resources.ToCSS | resources.PostCSS | resources.Minify | resources.Fingerprint }}
+  {{ $scss := resources.Get "css/main.scss" | css.Sass }}
+  {{/* Uncomment next line if you later add PostCSS (requires npm setup)
+  | css.PostCSS
+  */}}
+  {{ $scss = $scss | resources.Minify | resources.Fingerprint }}
   <link rel="stylesheet" href="{{ $scss.RelPermalink }}">
 
-  {{/* Optional extra custom CSS files from params.customCSS (e.g. css/custom.css) */}}
+  {{/* Optional extra custom CSS from params.customCSS (e.g., css/custom.css) */}}
   {{ with site.Params.customCSS }}
     {{ range . }}
       <link rel="stylesheet" href="{{ . | relURL }}">
     {{ end }}
   {{ end }}
 
-  {{/* Favicons if you add them in /static/ later
-  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
-  */}}
+  {{/* Favicons if added to /static/ */}}
+  {{ if (fileExists "static/favicon.ico") }}
+    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+  {{ end }}
+  {{ if (fileExists "static/apple-touch-icon.png") }}
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+  {{ end }}
 </head>
 <body class="{{ if .IsHome }}home{{ end }}">
   <div class="container container--outer">
