@@ -950,3 +950,113 @@ body.no-scroll { overflow: hidden; }
   .drawer-close, .drawer-backdrop { display:none !important; }
   #siteSidebar.drawer { position: static; height:auto; width:auto; transform:none; box-shadow:none; overflow:visible; }
 }
+
+/* ===== Crumbs of Sanity — Blogger-like skin ===== */
+
+/* Base layout width + typography */
+.container.container--outer {
+  max-width: 1080px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 2px 18px rgba(0,0,0,.06);
+}
+
+/* Light sage header bar */
+.site-header, .header, header[role="banner"] {
+  background: #dfe8d0; /* adjust to taste */
+  border-bottom: none;
+  padding: 18px 24px;
+}
+
+/* Title + tagline */
+.site-title, .logo__link, h1.logo, .header .logo a {
+  font-family: "EB Garamond", "Lora", serif;
+  letter-spacing: .05em;
+  font-weight: 400;
+  color: #222;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.site-description {
+  color: #444;
+  margin-top: 6px;
+}
+
+/* Top nav: centered with separators */
+nav, .menu, .topmenu {
+  text-align: center;
+  margin: 10px 0;
+}
+nav ul, .menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+nav ul li, .menu ul li {
+  display: inline;
+  margin: 0 8px;
+  position: relative;
+}
+nav ul li + li::before, .menu ul li + li::before {
+  content: "·";
+  margin-right: 12px;
+  color: #7a7a7a;
+}
+nav a, .menu a {
+  text-decoration: none;
+  color: #303030;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 0.95rem;
+}
+
+/* Hide the right sidebar on the homepage (matches Blogger feel) */
+.home .sidebar {
+  display: none;
+}
+.home .wrapper.flex {
+  display: block;
+}
+
+/* Hero image full-width look for post thumbnails on home */
+.home .tile__thumb img,
+.home .post-thumbnail img,
+.home img.hero {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons / Read more */
+.button, .btn, a.read-more, .read-more a {
+  background: #333;
+  color: #fff !important;
+  border-radius: 3px;
+  padding: 8px 14px;
+  text-decoration: none;
+}
+
+/* Post titles & meta */
+.tile__title a, .post__title {
+  color: #111;
+  text-decoration: none;
+}
+.tile__meta, .post__meta {
+  color: #7a7a7a;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer, .site-footer {
+  border-top: 1px solid #eee;
+  padding: 24px;
+  color: #666;
+  background: #fafafa;
+}
+
+/* Make sure hero.jpg is used as a wide banner when no per-post image is set */
+img[src*="/img/hero.jpg"] {
+  width: 100%;
+  height: auto;
+  display: block;
+}
