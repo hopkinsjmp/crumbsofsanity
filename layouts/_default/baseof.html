@@ -38,7 +38,7 @@
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
   {{ end }}
 </head>
-<body class="{{ if .IsHome }}home{{ end }}">
+<body class="{{ if .IsHome }}home{{ end }} type-{{ .Type }} section-{{ .Section }} kind-{{ .Kind }} {{ if .IsPage }}is-page{{ end }}">
   <div class="container container--outer">
     {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
 

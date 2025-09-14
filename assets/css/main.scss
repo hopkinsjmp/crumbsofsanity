@@ -1286,3 +1286,77 @@ img[src*="/img/hero.jpg"] { width: 100%; height: auto; display: block; }
   color: inherit !important; 
   padding: 0 !important; 
 }
+
+/* === Full-bleed header + hero on the homepage === */
+
+/* 1) Header bar spans full viewport width */
+.site-header {
+  /* stretch to the viewport edges even inside a centered container */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* keep the inner header content from touching browser edges on small screens */
+.home .site-header .container {
+  max-width: none;     /* don't re-constrain */
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* 2) Hero image spans full viewport width */
+.home-hero {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.home .home-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3) Optional: remove the page box shadow on the homepage so the edges feel flush */
+.home .container.container--outer {
+  box-shadow: none;
+}
+
+/* ===== Static pages (About, etc.) ===== */
+
+/* Hide sidebar and use single column on pages */
+.type-page .sidebar { display: none !important; }
+.type-page .wrapper.flex { display: block !important; }
+
+/* Slightly narrower, book-ish reading width */
+.type-page .container.container--outer { max-width: 900px; }
+
+/* Typography: override Blogger inline fonts with our serif stack */
+.type-page .content p,
+.type-page .content li {
+  font-family: "Lora","EB Garamond", serif !important;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  text-align: justify;
+  color: #222;
+}
+
+/* Headings on pages */
+.type-page h1 { 
+  font-family: "EB Garamond", serif;
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+.type-page h2 { font-size: 1.35rem; margin: 1.5rem 0 .75rem; }
+
+/* Lists spacing */
+.type-page ol, .type-page ul { margin: 0 0 1.25rem 1.25rem; }
+
+/* Images & embeds */
+.type-page .content img { max-width: 100%; height: auto; }
+
+/* Center any Blogger-inline centered blocks (keeps insta row centered) */
+.type-page .content div[style*="text-align: center"] { text-align: center !important; }
+
+/* Optional: soften page footer and remove “read more” UI on pages */
+.type-page .read-more, .type-page .btn, .type-page .button { display: none !important; }
