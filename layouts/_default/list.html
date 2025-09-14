@@ -7,11 +7,11 @@
   <div class="tiles">
     {{ range .Paginator.Pages }}
       <article class="tile">
-        {{ with .Params.image }}
-          <a class="tile__thumb" href="{{ .Permalink }}">
-            <img src="{{ . | relURL }}" alt="">
-          </a>
-        {{ end }}
+      {{ with .Params.image }}
+        <a class="tile__thumb" href="{{ $.Permalink }}">
+          <img src="{{ . | relURL }}" alt="">
+        </a>
+      {{ end }}
         <div class="tile__meta">{{ .Date.Format "January 2, 2006" }}</div>
         <h2 class="tile__title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <div class="tile__excerpt">{{ .Summary }}</div>
