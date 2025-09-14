@@ -1,44 +1,35 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ .Site.Language.Lang }}">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ block "title" . }}{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ .Site.Title }}{{ end }}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <script>(d=>{d.className=d.className.replace("no-js","js")})(document.documentElement)</script>
+  <title>{{ if .Title }}{{ .Title }} · {{ site.Title }}{{ else }}{{ site.Title }}{{ end }}</title>
 
-  <meta name="description" content='{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Params.description | default .Summary }}{{ end }}'>
+  {{/* Meta description (from page desc or summary or site param) */}}
+  {{- $desc := .Params.description | default (cond (gt (len .Summary) 0) (.Summary | plainify) site.Params.description) -}}
+  {{- with $desc }}<meta name="description" content="{{ . }}">{{ end }}
 
-  {{ if .Site.Params.opengraph }}{{ template "_internal/opengraph.html" . }}{{ end }}
-  {{ if .Site.Params.schema }}{{ template "_internal/schema.html" . }}{{ end }}
-  {{ if .Site.Params.twitter_cards }}{{ template "_internal/twitter_cards.html" . }}{{ end }}
-
-  {{ with .Site.Params.googleFontsLink }}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="{{ . }}">
+  {{/* Google Fonts (from hugo.toml: params.googleFontsLink) */}}
+  {{ with site.Params.googleFontsLink }}
+    <link rel="stylesheet" href="{{ . }}">
   {{ end }}
 
-  <style>
-    :root{
-      --highlight-color: {{ .Site.Params.style.vars.highlightColor | default (.Site.Params.highlightColor | default "#e22d30") }};
-      --font-primary: {{ (.Site.Params.style.vars.fontFamilyPrimary  | default "\"Open Sans\", Helvetica, Arial, sans-serif") | safeCSS }};
-      --font-secondary: {{ (.Site.Params.style.vars.fontFamilySecondary | default "SFMono-Regular, Menlo, Monaco, Consolas, \"Courier New\", monospace") | safeCSS }};
-    }
-  </style>
+  {{/* Main SCSS pipeline: assets/css/main.scss → CSS */}}
+  {{ $scss := resources.Get "css/main.scss" | resources.ToCSS | resources.PostCSS | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $scss.RelPermalink }}">
 
-
-  {{ $styles := resources.Get "css/main.scss" | css.Sass (dict "targetPath" "css/main.css") | resources.Minify }}
-  <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
-
-  {{ range .Site.Params.customCSS }}<link rel="stylesheet" href="{{ . | relURL }}">{{ end }}
-
-  {{ with .OutputFormats.Get "rss" }}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+  {{/* Optional extra custom CSS files from params.customCSS (e.g. css/custom.css) */}}
+  {{ with site.Params.customCSS }}
+    {{ range . }}
+      <link rel="stylesheet" href="{{ . | relURL }}">
+    {{ end }}
   {{ end }}
 
+  {{/* Favicons if you add them in /static/ later
   <link rel="icon" href="{{ "favicon.ico" | relURL }}">
-  {{ if not hugo.IsServer }}{{ template "_internal/google_analytics.html" . }}{{ end }}
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+  */}}
 </head>
 <body class="{{ if .IsHome }}home{{ end }}">
   <div class="container container--outer">
