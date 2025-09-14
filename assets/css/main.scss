@@ -1157,3 +1157,84 @@ img[src*="/img/hero.jpg"] {
   height: auto;
   display: block;
 }
+
+/* ===== Crumbs of Sanity — Blogger-like skin ===== */
+
+/* Page container and general layout */
+.container.container--outer {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 2px 18px rgba(0,0,0,.06);
+}
+
+/* Header: light sage bar, title & tagline */
+.site-header, .header, header[role="banner"] {
+  background: #dfe8d0; /* tweak to match your exact sage */
+  border-bottom: none;
+  padding: 18px 24px;
+}
+.site-title, .logo__link, h1.logo, .header .logo a {
+  font-family: "EB Garamond", "Lora", serif;
+  letter-spacing: .05em;
+  font-weight: 400;
+  color: #222;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 0;
+}
+.site-description {
+  color: #444;
+  margin-top: 6px;
+}
+
+/* Navigation: remove dark bar, center items with separators */
+nav, .menu, .topmenu { background: transparent !important; }
+nav ul, .menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+}
+nav ul li { display: inline; margin: 0 8px; }
+nav ul li + li::before { content: "·"; margin-right: 12px; color: #7a7a7a; }
+nav a {
+  text-decoration: none;
+  color: #303030;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 0.95rem;
+}
+
+/* Home: no sidebar, one-column feel */
+.home .sidebar { display: none !important; }
+.home .wrapper.flex { display: block; }
+
+/* Hero: full-bleed image, no overlay */
+.home-hero { margin: 0 0 24px 0; }
+.home-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+
+/* Post tiles on home */
+.home-list .tile { margin: 0 0 40px 0; }
+.tile__meta { color: #7a7a7a; font-size: 0.9rem; margin: 6px 0 4px; }
+.tile__title a { color: #111; text-decoration: none; }
+.tile__thumb img { width: 100%; height: auto; display: block; }
+
+/* Remove chunky dark buttons; keep links plain */
+.read-more, .read-more a, .btn, .button { background: transparent; color: inherit; padding: 0; }
+
+/* Footer */
+footer, .site-footer {
+  border-top: 1px solid #eee;
+  padding: 24px;
+  color: #666;
+  background: #fafafa;
+}
+
+/* Ensure default hero.jpg fills width if used */
+img[src*="/img/hero.jpg"] { width: 100%; height: auto; display: block; }

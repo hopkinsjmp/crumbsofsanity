@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+  {{/* Choose a hero image: per-page .Params.image, otherwise site param heroImage */}}
+  {{ $hero := .Params.image | default site.Params.heroImage }}
+  {{ if $hero }}
+    <section class="home-hero">
+      <img src="{{ $hero | relURL }}" alt="">
+    </section>
+  {{ end }}
+
+  <section class="home-list">
+    {{ range .Paginator.Pages }}
+      <article class="tile">
+        {{ with .Params.image }}
+          <a class="tile__thumb" href="{{ $.Permalink }}">
+            <img src="{{ . | relURL }}" alt="">
+          </a>
+        {{ end }}
+        <div class="tile__meta">{{ .Date.Format "January 2, 2006" }}</div>
+        <h2 class="tile__title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <div class="tile__excerpt">{{ .Summary }}</div>
+      </article>
+    {{ end }}
+    {{ partial "pagination.html" . }}
+  </section>
+
+{{ end }}
