@@ -1,6 +1,4 @@
 {{ define "main" }}
-
-  {{/* Choose a hero image: per-page .Params.image, otherwise site param heroImage */}}
   {{ $hero := .Params.image | default site.Params.heroImage }}
   {{ if $hero }}
     <section class="home-hero">
@@ -23,5 +21,4 @@
     {{ end }}
     {{ partial "pagination.html" . }}
   </section>
-
 {{ end }}

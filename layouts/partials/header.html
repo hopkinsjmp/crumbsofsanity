@@ -1,26 +1,17 @@
-<header class="header">
+<header class="site-header" role="banner">
   <div class="container">
-
-    <button id="sidebarToggle"
-            class="hamburger"
-            aria-label="Open sidebar"
-            aria-controls="siteSidebar"
-            aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-
     <div class="logo">
       <a class="logo__link" href="{{ "/" | relURL }}" rel="home">
-        <div class="logo__title">{{ .Site.Title }}</div>
+        <div class="logo__title">{{ site.Title }}</div>
       </a>
-      {{ with .Site.Params.description }}<p class="tagline">{{ . }}</p>{{ end }}
+      {{ with site.Params.description }}<p class="tagline">{{ . }}</p>{{ end }}
     </div>
 
-    {{ with .Site.Menus.main }}
-    <nav class="menu" aria-label="Main navigation">
-      <ul class="menu__list">
+    {{ with site.Menus.main }}
+    <nav class="topmenu" aria-label="Main navigation">
+      <ul>
         {{ range . }}
-          <li class="menu__item"><a class="menu__link" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
         {{ end }}
       </ul>
     </nav>

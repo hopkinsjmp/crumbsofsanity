@@ -1238,3 +1238,51 @@ footer, .site-footer {
 
 /* Ensure default hero.jpg fills width if used */
 img[src*="/img/hero.jpg"] { width: 100%; height: auto; display: block; }
+
+/* === CoS: strip old theme chrome & match Blogger === */
+
+/* Light sage header already set elsewhere; ensure no dark nav bar remains */
+.menu, .menu__list, .menu__item, .menu__link { 
+  background: transparent !important; 
+  border: 0 !important; 
+  box-shadow: none !important;
+}
+
+/* New topmenu: centered links with separators */
+.topmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+}
+.topmenu ul li {
+  display: inline;
+  margin: 0 8px;
+}
+.topmenu ul li + li::before {
+  content: "·";
+  margin: 0 12px 0 8px;
+  color: #7a7a7a;
+}
+.topmenu a {
+  text-decoration: none;
+  color: #303030;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: .95rem;
+}
+
+/* Homepage: no sidebar, one column */
+.home .sidebar { display: none !important; }
+.home .wrapper.flex { display: block !important; }
+
+/* Hero: image only, no dark overlay */
+.hero__overlay { display: none !important; }
+.home-hero img { width: 100%; height: auto; display: block; }
+
+/* Tidy “Read more” */
+.read-more, .read-more a, .btn, .button { 
+  background: transparent !important; 
+  color: inherit !important; 
+  padding: 0 !important; 
+}
