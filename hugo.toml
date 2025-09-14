@@ -1,6 +1,8 @@
-baseURL = "https://www.crumbsofsanity.com/"
+baseURL = "https://hopkinsjmp.github.io/crumbsofsanity/"
 languageCode = "en"
 title = "Crumbs of Sanity"
+relativeURLs = true
+canonifyURLs = true
 #theme = "mainroad"
 
 [pagination]
