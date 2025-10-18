@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Deploy Hugo site to Pages
 
 on:
@@ -11,20 +10,35 @@ permissions:
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Hugo Extended (exact version)
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
-          submodules: true
-          fetch-depth: 0
-      - uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.129.0"
+          hugo-version: '0.148.0'
           extended: true
+
+      # Configure Pages and get the correct base URL for project sites
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build
-        run: hugo --minify
+        env:
+          HUGO_ENVIRONMENT: production
+        run: |
+          hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -32,10 +46,11 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
