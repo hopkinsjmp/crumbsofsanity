@@ -26,16 +26,16 @@
   {{/* Optional extra custom CSS from params.customCSS (e.g., css/custom.css) */}}
   {{ with site.Params.customCSS }}
     {{ range . }}
-      <link rel="stylesheet" href="{{ . | relURL }}">
+      <link rel="stylesheet" href="{{ . | absURL }}">
     {{ end }}
   {{ end }}
 
   {{/* Favicons if added to /static/ */}}
   {{ if (fileExists "static/favicon.ico") }}
-    <link rel="icon" href="{{ "favicon.ico" | relURL }}">
+    <link rel="icon" href="{{ "favicon.ico" | absURL }}">
   {{ end }}
   {{ if (fileExists "static/apple-touch-icon.png") }}
-    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | absURL }}">
   {{ end }}
 </head>
 <body class="{{ if .IsHome }}home{{ end }} type-{{ .Type }} section-{{ .Section }} kind-{{ .Kind }} {{ if .IsPage }}is-page{{ end }}">
@@ -63,8 +63,8 @@
     {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
   </div>
 
-  <script src="{{ "js/sidebar.js" | relURL }}" defer></script>
-  {{ range .Site.Params.customJS }}<script src="{{ . | relURL }}" defer></script>{{ end }}
+  <script src="{{ "js/sidebar.js" | absURL }}" defer></script>
+  {{ range .Site.Params.customJS }}<script src="{{ . | absURL }}" defer></script>{{ end }}
   {{ partial "mathjax.html" . }}
 </body>
 </html>
