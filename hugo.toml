@@ -1,7 +1,7 @@
 baseURL = "https://hopkinsjmp.github.io/crumbsofsanity/"
 languageCode = "en"
 title = "Crumbs of Sanity"
-relativeURLs = true
+relativeURLs = false
 canonifyURLs = true
 #theme = "mainroad"
 
@@ -20,15 +20,17 @@ canonifyURLs = true
   summaryLength   = 60
   customJS        = ["js/custom.js"]
   customCSS       = ["css/custom.css"]
-  googleFontsLink = "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap"
+  googleFontsLink = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lora:wght@400;600&display=swap"
+  dateFormat = "January 2, 2006"
   mainSections    = ["posts"]
   heroImage       = "img/hero.jpg"
+  instagramURL = "https://instagram.com/crumbsofsanityblog"
 
 [params.sidebar]
   home    = "left"
   list    = "left"
   single  = "left"
-  widgets = ["search", "recent", "categories", "taglist"]
+  widgets = ["search", "instagram", "subscribe", "archive", "recent", "categories", "taglist"]
 
 [params.widgets]
   recent_posts       = 5
