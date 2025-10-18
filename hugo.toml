@@ -25,6 +25,7 @@ canonifyURLs = true
   mainSections    = ["posts"]
   heroImage       = "img/hero.jpg"
   instagramURL = "https://instagram.com/crumbsofsanityblog"
+  subscribeURL = "https://crumbsofsanity.substack.com"
 
 [params.sidebar]
   home    = "left"
