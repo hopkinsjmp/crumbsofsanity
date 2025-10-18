@@ -1,20 +1,19 @@
-/* ========= Crumbs of Sanity theme (Hugo) ========= */
-/* Approx. colors sampled from your Blogger screenshots */
+/* ========= Crumbs of Sanity theme ========= */
 :root{
-  --bg-main:    #dfe7cf;  /* sage page background */
-  --bg-side:    #eef2e0;  /* lighter sidebar panel */
-  --text:       #222018;  /* near-black brown */
+  --bg-main:    #dfe7cf;  /* page background (sage) */
+  --bg-side:    #eef2e0;  /* sidebar panel */
+  --text:       #222018;  /* body text (brownish) */
   --muted:      #7b7e71;  /* muted text */
-  --heading:    #2f261d;  /* dark brown heading */
-  --link:       #b45745;  /* warm coral link */
-  --border:     #aab39b;  /* slim divider lines */
+  --heading:    #2f261d;  /* headings */
+  --link:       #b45745;  /* coral link */
+  --border:     #aab39b;  /* divider line */
   --hero-radius: 8px;
 
-  --content-max: 720px;   /* reading width */
-  --sidebar-w:   300px;   /* good desktop width */
+  --content-max: 720px;
+  --sidebar-w:   300px;
 }
 
-/* ---- Base ---- */
+/* Base */
 html, body { background: var(--bg-main); color: var(--text); }
 body{
   font-family: "Lora", Georgia, "Times New Roman", serif;
@@ -24,76 +23,69 @@ body{
   text-rendering: optimizeLegibility;
 }
 
-/* Headings & nav */
+a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+/* Headings & menu */
 h1, h2, h3, .logo__title, .topmenu a {
   font-family: "Cormorant Garamond", Georgia, serif;
   color: var(--heading);
   letter-spacing: .2px;
 }
-h1{ font-size: clamp(2.0rem, 3.2vw, 2.6rem); line-height: 1.2; margin: 1.2rem 0 .8rem; }
-h2{ font-size: clamp(1.5rem, 2.4vw, 2rem);   line-height: 1.25; margin: 1rem 0 .6rem; }
+h1{ font-size: clamp(2.0rem, 3.2vw, 2.6rem); line-height: 1.2; margin: 1.25rem 0 .75rem; }
+h2{ font-size: clamp(1.5rem, 2.4vw, 2.0rem); line-height: 1.25; margin: 1rem 0 .6rem; }
 
-a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
-a:hover { text-decoration-thickness: 2px; }
-
-/* ---- Header strip (title + subtitle + simple nav) ---- */
-.site-header { background: var(--bg-main); padding: 1.25rem 0 0.75rem; border-bottom: 1px solid var(--border); }
+/* Header bar */
+.site-header { background: var(--bg-main); padding: 1.1rem 0 .8rem; border-bottom: 1px solid var(--border); }
 .site-header .container{ max-width: 1100px; margin: 0 auto; padding: 0 1rem; text-align: center; }
 .logo__title{ font-weight: 600; letter-spacing: .5px; }
 .tagline{ color: var(--muted); margin: .25rem 0 .75rem; }
-
-/* “THE BLOG · ABOUT · HOW TO CONTRIBUTE” links with bullets */
 .topmenu ul{ list-style: none; display: inline-flex; gap: .75rem; padding: 0; margin: 0; }
 .topmenu li{ display: inline-flex; align-items: center; }
 .topmenu li + li::before{ content: "·"; color: var(--muted); margin: 0 .5rem; }
 
-/* optional tiny search link to the right if you add it */
-.topmenu .search-link{ margin-left: 1rem; color: var(--link); }
-
-/* ---- Main layout: sidebar on the LEFT (CSS-only reorder) ---- */
+/* Two-column layout (sidebar LEFT) */
 .container.container--outer{ max-width: 1100px; margin: 0 auto; }
 .wrapper.flex{ display: flex; gap: 2rem; align-items: flex-start; }
-
 .primary{ order: 2; flex: 1 1 auto; min-width: 0; }
 .sidebar{ order: 1; width: var(--sidebar-w); background: var(--bg-side); border-right: 1px solid var(--border); padding: 1rem; border-radius: 8px 0 0 8px; }
 
-/* Sidebar cosmetics */
+/* Sidebar widgets */
 .sidebar .widget + .widget{ margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
 .sidebar .widget-title{ font-family: "Cormorant Garamond", Georgia, serif; font-weight: 600; margin-bottom: .5rem; }
 .sidebar p{ margin: .5rem 0; }
+.search-form{ display:flex; gap:.5rem; align-items:center; }
+.search-input{ flex:1; padding:.45rem .6rem; border:1px solid var(--border); border-radius:6px; background:#fff; }
+.archive-list{ list-style:none; padding-left:0; margin:.5rem 0 0; }
+.archive-list li{ margin:.25rem 0; }
 
-/* Buttons (Instagram / Subscribe) */
-.btn{
-  display: inline-block; padding: .55rem .9rem; border-radius: 8px;
-  text-decoration: none; font-weight: 600;
-}
+/* Buttons (Instagram / Subscribe / ghost) */
+.btn{ display:inline-block; padding:.55rem .9rem; border-radius: 8px; font-weight: 600; text-decoration:none; }
 .btn--ig{ background: #f4f0ff; border: 1px solid #d5c8ff; }
-.btn--sub{ background: #ff8ec0; color: #fff; border: 1px solid #ef6da8; }
+.btn--sub{ background: #ff8ec0; color:#fff; border:1px solid #ef6da8; }
+.btn--ghost{ background: transparent; border:1px solid var(--border); color:var(--text); }
 
-/* ---- Content width ---- */
+/* Content width */
 .content, .main, .primary, main{ max-width: var(--content-max); }
 
-/* ---- Home hero ---- */
-.home-hero img{
-  display:block; width:100%; height:auto; border-radius: var(--hero-radius);
-  margin: 0 auto 1.25rem;
-}
+/* Home hero */
+.home-hero img{ display:block; width:100%; height:auto; border-radius: var(--hero-radius); margin: 0 auto 1.25rem; }
 
-/* ---- Post list “tiles” ---- */
+/* Post list tiles */
 .tile{ margin: 1.25rem 0; }
-.tile__thumb img{ width: 100%; height: auto; border-radius: 8px; }
-.tile__meta{ color: var(--muted); font-size: .95rem; margin-top: .25rem; }
+.tile__thumb img{ width:100%; height:auto; border-radius:8px; }
+.tile__meta{ color: var(--muted); font-size:.95rem; margin-top:.25rem; }
 
-/* ---- Single post ---- */
+/* Single post */
 .post__meta{ color: var(--muted); }
-.post__title{ border-bottom: 2px solid var(--border); padding-bottom: .4rem; margin-bottom: 1rem; }
-.post__content img{ border-radius: 8px; }
+.post__title{ border-bottom: 2px solid var(--border); padding-bottom:.4rem; margin-bottom: 1rem; }
+.post__content img{ border-radius:8px; }
 
-/* ---- Footer ---- */
-.footer{ margin-top: 3rem; padding: 1rem 0; color: var(--muted); border-top: 1px solid var(--border); }
+/* Footer */
+.footer{ margin-top:3rem; padding:1rem 0; color:var(--muted); border-top: 1px solid var(--border); }
 
-/* ---- Mobile ---- */
+/* Mobile */
 @media (max-width: 900px){
   .wrapper.flex{ display:block; }
-  .sidebar{ width:auto; border-right:none; border-top: 1px solid var(--border); border-radius: 8px 8px 0 0; margin-top: 1rem; }
+  .sidebar{ width:auto; border-right:none; border-top:1px solid var(--border); border-radius: 8px 8px 0 0; margin-top:1rem; }
 }
