@@ -1,26 +1,21 @@
-{{ $posts := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-{{ $groups := slice }}
-{{ range $posts }}
-  {{ $key := .Date.Format "2006-01" }}
-  {{ $groups = $groups | append (dict "key" $key "month" (.Date.Format "January 2006") "page" .) }}
-{{ end }}
-{{/* group by key */}}
-{{ $map := dict }}
-{{ range $groups }}
-  {{ $k := .key }}
-  {{ $arr := cond (index $map $k) (index $map $k) (slice) }}
-  {{ $map = merge $map (dict $k (append $arr .page)) }}
-{{ end }}
+{{/* Simple archive: group posts by month and list links */}}
+{{ $posts := where .Site.RegularPages "Type" "in" site.Params.mainSections }}
+{{ $groups := $posts.GroupByDate "January 2006" }}
 
 <div class="widget widget-archive">
   <div class="widget-title">Archive</div>
   <details>
     <summary>Browse months</summary>
     <ul class="archive-list">
-      {{ range sort (keys $map) "value" "desc" }}
-        {{ $pages := index $map . }}
-        {{ $label := (index $pages 0).Date.Format "January 2006" }}
-        <li><a href="{{ (index $pages 0).Date | time.Format "/2006/01/" | relURL }}">{{ $label }}</a></li>
+      {{ range $groups }}
+        <li>
+          <strong>{{ .Key }}</strong>
+          <ul>
+            {{ range .Pages }}
+              <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+            {{ end }}
+          </ul>
+        </li>
       {{ end }}
     </ul>
   </details>
