@@ -1,20 +1,24 @@
 <header class="site-header" role="banner">
-  <div class="container">
-    <div class="logo">
+  <div class="container headerbar">
+    <div class="headerbar__left">
       <a class="logo__link" href="{{ "/" | relURL }}" rel="home">
         <div class="logo__title">{{ site.Title }}</div>
       </a>
       {{ with site.Params.description }}<p class="tagline">{{ . }}</p>{{ end }}
+
+      {{ with site.Menus.main }}
+      <nav class="topmenu" aria-label="Main navigation">
+        <ul>
+          {{ range . }}
+            <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+          {{ end }}
+        </ul>
+      </nav>
+      {{ end }}
     </div>
 
-    {{ with site.Menus.main }}
-    <nav class="topmenu" aria-label="Main navigation">
-      <ul>
-        {{ range . }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-        {{ end }}
-      </ul>
-    </nav>
-    {{ end }}
+    <div class="headerbar__right">
+      <a class="search-link" href="{{ "search/" | relURL }}">SEARCH</a>
+    </div>
   </div>
 </header>
