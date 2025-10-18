@@ -19,6 +19,10 @@
   {{- end -}}
 
   {{- range $widgets -}}
-    {{- partial (printf "widgets/%s.html" .) $ -}}
+    {{- $p := printf "partials/widgets/%s.html" . -}}
+    {{- if templates.Exists $p -}}
+      {{- partial (printf "widgets/%s.html" .) $ -}}
+    {{- end -}}
   {{- end -}}
+
 {{- end -}}
