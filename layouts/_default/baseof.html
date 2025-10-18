@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="{{ . }}">
   {{ end }}
 
-  {{/* Main SCSS pipeline: assets/css/main.scss → CSS */}}
-  {{ $scss := resources.Get "css/main.scss" | css.Sass }}
-  {{/* Uncomment next line if you later add PostCSS (requires npm setup)
-  | css.PostCSS
-  */}}
-  {{ $scss = $scss | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $scss.RelPermalink }}">
+  {{/* Styles: use SCSS when extended is available; otherwise fall back to plain CSS */}}
+  {{ if hugo.IsExtended }}
+    {{ $scss := resources.Get "css/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $scss.RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  {{ end }}
 
   {{/* Optional extra custom CSS from params.customCSS (e.g., css/custom.css) */}}
   {{ with site.Params.customCSS }}
@@ -39,23 +39,30 @@
   {{ end }}
 </head>
 <body class="{{ if .IsHome }}home{{ end }} type-{{ .Type }} section-{{ .Section }} kind-{{ .Kind }} {{ if .IsPage }}is-page{{ end }}">
-  <div class="wrapper layout--with-sidebar">
-    <aside id="siteSidebar" class="sidebar">
-      {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
-    </aside>
+  <!-- BASEOF CHECK: _default/baseof.html v2 -->
 
-    <main class="primary" role="main">
-      {{ block "main" . }}
-        {{ with .Content }}
-        <div class="content main__content clearfix">
-          {{ . }}
-        </div>
+  <div class="container container--outer">
+    {{ block "header" . }}{{ partial "header.html" . }}{{ end }}
+
+    <div class="wrapper layout--with-sidebar">
+      <aside id="siteSidebar" class="sidebar">
+        {{ block "sidebar" . }}{{ partial "sidebar.html" . }}{{ end }}
+      </aside>
+
+      <main class="primary" role="main">
+        {{ block "main" . }}
+          {{ with .Content }}
+          <div class="content main__content clearfix">
+            {{ . }}
+          </div>
+          {{ end }}
         {{ end }}
-      {{ end }}
-    </main>
+      </main>
+    </div>
+
+    {{ block "footer" . }}{{ partial "footer.html" . }}{{ end }}
   </div>
 
   {{ range .Site.Params.customJS }}<script src="{{ . | absURL }}" defer></script>{{ end }}
   {{ partial "mathjax.html" . }}
 </body>
-</html>
