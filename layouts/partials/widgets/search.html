@@ -1,7 +1,8 @@
-<div class="widget-search widget">
-  <form class="widget-search__form" role="search" method="get" action="https://www.google.com/search">
-    <input class="widget-search__field" type="search" placeholder="Search…" name="q" aria-label="Search…">
-    <input type="hidden" name="as_sitesearch" value="crumbsofsanity.com">
-    <input class="widget-search__submit" type="submit" value="Search">
+<div class="widget widget-search">
+  <div class="widget-title">Search</div>
+  <form action="https://www.google.com/search" method="get" class="search-form">
+    <input type="hidden" name="q" value="site:crumbsofsanity.com ">
+    <input class="search-input" type="text" name="q" placeholder="Search…">
+    <button class="btn btn--ghost" type="submit">Search</button>
   </form>
 </div>
